@@ -19,6 +19,7 @@
 ======================================================================*/
 
 //Set password!
+//$sosHellKey = "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"; 
 $sosHellKey = sha1("password"); 
 
 $style="position:fixed;width:100%;font-family:monospace;color:#609;font-size:120%;";
