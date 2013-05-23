@@ -2,8 +2,12 @@
 =======
 
 This is example code for a tiny php remote administration shell.  
-The code is provided for education only.  
-It should not be used in the "real world"!
+The code is provided for education only.
+
+## Screenshot ##
+
+![sosHell](http://xxor.de/pics/sosHell.png)
+
 
 ## How to use ##
 
